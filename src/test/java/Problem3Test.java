@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class Problem3Test {
     public static class BSTTestCase<T> {
@@ -31,11 +31,33 @@ public class Problem3Test {
             assertEquals(testCase.expect, actual);
         }
     }
-
+    //set your expect result in an array and use that to compare with the actual result
+    //so the expect result would have me manually think of what results it would put out
+    //and compare with the acutal results the function give me
     @Test
     public void testInOrderTraverse() {
-        // homework
-        // to verify inOrderTraverse(TreeNode<Integer> node)
+        //in order traversal goes left, node, right. gives least to greatest value
+        List<BSTTestCase<Integer>> testCases = getBSTTestCases();
+        int expected[][] = {
+                {1},
+                {1},
+                {1},
+                {1, 2},
+                {1, 2},
+                {1, 2},
+                {2, 4, 6},
+                {2, 4, 6},
+                {2, 4, 6},
+                {2, 4, 6},
+                {3, 5, 6, 9, 10, 13},
+                {3, 5, 6, 9, 10, 13},
+                {3, 5, 6, 9, 10, 13},
+                {3, 5, 6, 9, 10, 13},
+                {1},
+                {1},
+                {1},
+                {1}
+        };
     }
 
     private static List<Integer> inOrderTraverse(TreeNode<Integer> node) {
