@@ -5,7 +5,9 @@ import Problem1.TreeNode;
 public class LCA {
     public static TreeNode<Integer> answer;
 
-    public static TreeNode<Integer> lowestCommonAncestor(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
+    public static TreeNode<Integer> lowestCommonAncestor(TreeNode<Integer> root, TreeNode<Integer> p,
+                                                         TreeNode<Integer> q)
+    {
         if (root == null) { //in the case that it is not found
             return null;
         }
@@ -18,6 +20,7 @@ public class LCA {
         //continue to traverse nodes until reach the end or find a match with p or q
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
+        //once this is done, it returns the left and right of a node, now we will now check them
 
         //if both are not equal to null, then LCA is found
         if (left != null && right != null) {
