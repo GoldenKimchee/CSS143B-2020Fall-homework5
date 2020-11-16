@@ -29,10 +29,10 @@ public class KDistance {
         // Every node will be the key, and corresponding parent will be the value
 
 
-        Map<TreeNode, TreeNode> parentMap = new HashMap<>();
+        HashMap<TreeNode, TreeNode> parentMap = new HashMap<>();
         makeMap(parentMap, root, null);
         Queue<TreeNode> q = new LinkedList<>();
-        Set<TreeNode> duplicate = new HashSet<>(); //keep track of duplicates
+        HashSet<TreeNode> duplicate = new HashSet<>(); //keep track of duplicates
         q.add(target); //start it off by adding target node, find levels k based on target
         duplicate.add(target);
         int level = 0;
