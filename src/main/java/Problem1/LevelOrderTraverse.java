@@ -5,12 +5,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+//used the following link for reference:
+//https://towardsdatascience.com/4-types-of-tree-traversal-algorithms-d56328450846
 public class LevelOrderTraverse {
     public static List<List<Integer>> levelOrder(TreeNode<Integer> root) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null) { //there is no work to do
             return result;
         }
+        //Used LinkedList since its quick to add and remove items, only ever need head so no need for fast random access
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root); //starts the while loop
         while (!queue.isEmpty()) { //continues as long as there are items in the lower levels
