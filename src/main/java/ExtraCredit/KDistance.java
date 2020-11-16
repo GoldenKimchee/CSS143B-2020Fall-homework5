@@ -70,7 +70,7 @@ public class KDistance {
             }
             level++; //go to next level
         }
-        return toReturn;
+        return toReturn; //would be empty
     }
 
 
