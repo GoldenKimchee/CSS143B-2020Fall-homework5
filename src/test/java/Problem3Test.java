@@ -1,12 +1,13 @@
 import Problem1.TreeNode;
 import Problem3.InsertInBST;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class Problem3Test {
     public static class BSTTestCase<T> {
@@ -34,8 +35,44 @@ public class Problem3Test {
 
     @Test
     public void testInOrderTraverse() {
-        // homework
-        // to verify inOrderTraverse(TreeNode<Integer> node)
+        Integer expected[][] = {
+                {1},
+                {1},
+                {1},
+                {1, 2},
+                {1, 2},
+                {1, 2},
+                {2, 4, 6},
+                {2, 4, 6},
+                {2, 4, 6},
+                {2, 4, 6},
+                {3, 5, 6, 9, 10, 13},
+                {3, 5, 6, 9, 10, 13},
+                {3, 5, 6, 9, 10, 13},
+                {3, 5, 6, 9, 10, 13},
+                {1},
+                {1},
+                {1},
+                {1}
+        };
+
+        //actual
+        List<BSTTestCase<Integer>> testCases = getBSTTestCases();
+
+        for (int i = 0; i < testCases.size(); i++) {
+            BSTTestCase<Integer> toTest = testCases.get(i); //retrieve a test case one by one
+            List<Integer> actualList = inOrderTraverse(toTest.tree); //pass that test case into the function
+            Integer[] actual = new Integer[actualList.size()]; //convert the returned list into an array
+            actualList.toArray(actual); //now we can compared the two arrays (expected and actual)
+            try {
+                assertArrayEquals(expected[i], actual); //compare for each test case
+            } catch (AssertionError e) {
+                System.out.println("Test case " + (i + 1) + " has failed.");
+                System.out.println("Expected: " + Arrays.toString(expected[i]) +
+                                   "\nActual: " + Arrays.toString(actual));
+                Assert.fail();
+            }
+        }
     }
 
     private static List<Integer> inOrderTraverse(TreeNode<Integer> node) {
@@ -146,9 +183,20 @@ public class Problem3Test {
         //    N   N
         // homework
         // what problem can you see for insertInBst from this test case?
-        // answer:
+        // answer: Since the values inserted are greater than the last, it is always going to be at the
+        // right-most (to the very bottom, to the very right of the tree) node.
+        // However, since my insert method has 5 different parts in its if-else conditional, it will take unnecessary
+        // time going through each part of the conditional when we already know it is the greatest number. This means
+        // it will get slower and slower with each insertion, when we want our BST to have fast search.
+
         // discuss how you would solve it in a comment below
-        // answer:
+        // answer: A simple solution would simply have (root.val < valToInsert && root.right == null) and
+        // (root.val < valToInsert) as the first two conditionals which would shorten the time a bit.
+        // A better solution would be to possibly store a pointer to the right-most node that is currently null,
+        // so that the next biggest number can be stored there. To check if it is the biggest number, we could store
+        // the current largest value in another variable, and can compare those two values before going into the
+        // conditionals.
+
         root = new TreeNode<>(1);
         testCases.add(new BSTTestCase<>(root, 2, Arrays.asList(1, 2)));
         testCases.add(new BSTTestCase<>(root, 3, Arrays.asList(1, 2, 3)));
